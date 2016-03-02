@@ -7,4 +7,7 @@ module.exports = function(app) {
   app.route('/categories')
     .get(categories.list)
     .post(categories.create);
+
+  app.route('/categories/:categoryId')
+    .get(categories.read);
 };
