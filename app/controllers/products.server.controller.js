@@ -12,7 +12,17 @@ var mongoose = require('mongoose'),
  * Create a Product
  */
 exports.create = function(req, res) {
+  var product = new Product(req.body);
 
+  product.save(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.status(201).json(product);
+    }
+  });
 };
 
 /**
