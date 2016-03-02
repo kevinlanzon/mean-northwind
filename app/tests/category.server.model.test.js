@@ -25,7 +25,16 @@ describe('Category Model', function() {
 	  	});
 	  });
 
-	  it('throws a validation error when name is empty');
+	  it('throws a validation error when name is empty', function(done) {
+	  	var catergory = new Category({
+	  		description: 'Beer, Wine, Gin'
+	  	});
+
+	  	catergory.save(function(err) {
+	  		err.errors.name.message.should.equal('Name cannot be blank');
+	  		done();
+	  	});
+	  });
 
 	  it('throws a validation error when name longer than 15 chars');
 
