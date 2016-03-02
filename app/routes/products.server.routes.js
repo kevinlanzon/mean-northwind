@@ -10,5 +10,6 @@ module.exports = function(app) {
 
   app.route('/products/:productId')
     .get(products.read)
-    .put(products.update);
+    .put(products.update)
+    .delete(products.delete);
 };

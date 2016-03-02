@@ -68,7 +68,17 @@ exports.update = function(req, res) {
  * Delete a Product
  */
 exports.delete = function(req, res) {
+  var product = req.product;
 
+  product.remove(function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(product);
+    }
+  });
 };
 
 /**
