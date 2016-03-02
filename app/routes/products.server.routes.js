@@ -12,4 +12,9 @@ module.exports = function(app) {
     .get(products.read)
     .put(products.update)
     .delete(products.delete);
+
+  // Where the productId is present in the URL
+  // the logic to 'get by id' is handled by this single function
+  // and added to the request object (request.product).
+  app.param('productId', products.productByID);
 };

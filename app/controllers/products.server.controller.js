@@ -95,3 +95,26 @@ exports.list = function(req, res) {
     }
   });
 };
+
+/**
+ * Product middleware
+ */
+exports.productByID = function(req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Product is invalid'
+    });
+  }
+
+  Product.findById(id).exec(function(err, product) {
+    if (err) return next(err);
+    if (!product) {
+      return res.status(404).send({
+          message: 'Product not found'
+        });
+    }
+    req.product = product;
+    next();
+  });
+};
