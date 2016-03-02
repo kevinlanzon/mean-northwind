@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 var should = require('should'),
   mongoose = require('mongoose'),
   Category = mongoose.model('Category');
@@ -11,16 +10,25 @@ var should = require('should'),
 /**
  * Unit tests
  */
-
 describe('Category Model', function() {
 
-  describe('Saving', function() {
-	  it('saves new record');
+  describe('#Saving', function() {
+	  it('saves new record', function(done) {
+	  	var category = new Category({
+	  		name: 'Drinks',
+	  		description: 'Beer, Wine, Gin'
+	  	});
 
-	  it('throws validation error when name is empty');
+	  	category.save(function(error, saved) {
+        should.not.exist(error);
+        done();
+	  	});
+	  });
 
-	  it('throws validation error when name longer than 15 chars');
+	  it('throws a validation error when name is empty');
 
-	  it('throws validation error for duplicate category name');
+	  it('throws a validation error when name longer than 15 chars');
+
+	  it('throws a validation error for duplicate category name');
   });
 });
