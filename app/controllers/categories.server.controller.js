@@ -95,3 +95,26 @@ exports.list = function(req, res) {
       }
   });
 };
+
+/**
+ * Category middleware
+ */
+exports.categoryByID = function(req, res, next, id) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Category is invalid'
+    });
+  }
+
+  Category.findById(id).exec(function(err, category) {
+    if (err) return next(err);
+    if (!category) {
+      return res.status(404).send({
+          message: 'Category not found'
+        });
+    }
+    req.category = category;
+    next();
+  });
+};
