@@ -11,3 +11,4 @@ Tech used
 - AngularJS (Front-end Framework)
 - NodeJS (Application Server)
 - Mocha (Testing)
+- Karma (Testing)
