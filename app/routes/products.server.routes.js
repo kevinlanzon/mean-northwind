@@ -9,5 +9,6 @@ module.exports = function(app) {
     .post(products.create);
 
   app.route('/products/:productId')
-    .get(products.read);
+    .get(products.read)
+    .put(products.update);
 };
