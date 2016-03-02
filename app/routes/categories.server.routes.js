@@ -1,10 +1,8 @@
 'use strict';
 
 module.exports = function(app) {
+  var categories = require('../../app/controllers/categories.server.controller');
+
   app.route('/categories')
-    .get(function(req, res) {
-      res.json([{ name: 'Drinks'},
-                { name: 'Food'}
-              ]);
-    });
+    .get(categories.list);
 };
