@@ -9,5 +9,7 @@ module.exports = function(app) {
     .post(categories.create);
 
   app.route('/categories/:categoryId')
-    .get(categories.read);
+    .get(categories.read)
+    .put(categories.update)
+    .delete(categories.delete);
 };
