@@ -2,16 +2,17 @@
 
 module.exports = function(app) {
   // Require functions from categories controller
-  var categories = require('../../app/controllers/categories.server.controller');
+  var categories = require('../../app/controllers/categories.server.controller'),
+      users = require('../../app/controllers/users.server.controller');
 
   app.route('/categories')
     .get(categories.list)
-    .post(categories.create);
+    .post(users.requiresLogin, categories.create);
 
   app.route('/categories/:categoryId')
     .get(categories.read)
-    .put(categories.update)
-    .delete(categories.delete);
+    .put(users.requiresLogin, categories.update)
+    .delete(users.requiresLogin, categories.delete);
 
   // Where the categoryId is present in the URL
   // the logic to 'get by id' is handled by this single function
