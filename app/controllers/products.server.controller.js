@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    errorHandler = require('./errors.server.controller'),
+    Product = mongoose.model('Product'),
     _ = require('lodash');
 
 /**
@@ -38,5 +40,13 @@ exports.delete = function(req, res) {
  * List of Products
  */
 exports.list = function(req, res) {
-
+  Product.find().exec(function(err, products) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(products);
+    }
+  });
 };
