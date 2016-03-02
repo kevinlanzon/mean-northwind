@@ -48,6 +48,31 @@ describe('Category Model', function() {
 	    });
 	  });
 
-	  it('throws a validation error for duplicate category name');
+	  it('throws a validation error for duplicate category name', function(done) {
+	  	var category = new Category({
+	  		name: 'Drinks'
+	  	});
+
+	  	category.save(function(err) {
+	  		should.not.exist(err);
+
+	  		var duplicate = new Category({
+	  			name: 'Drinks'
+	  		});
+
+	  	duplicate.save(function(err) {
+	  		err.err.indexOf('$name').should.not.equal(-1);
+	  		err.err.indexOf('duplicate key error').should.not.equal(-1);
+	  		should.exist(err);
+	  		done();
+	  	});
+	  });
+  });
+});
+
+afterEach(function(done) {
+    // Deletes all categories run against a test database
+    Category.remove().exec();
+    done();
   });
 });
