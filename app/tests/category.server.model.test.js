@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var should = require('should'),
-  mongoose = require('mongoose'),
-  Category = mongoose.model('Category');
+    mongoose = require('mongoose'),
+    Category = mongoose.model('Category');
 
 /**
  * Unit tests

@@ -19,7 +19,6 @@ function validateLength (v) {
 var CategorySchema = new Schema({
   created: {
     type: Date,
-    // default values can be set
     default: Date.now
   },
   description: {
@@ -37,4 +36,5 @@ var CategorySchema = new Schema({
   }
 });
 
+// Expose model to other objects
 mongoose.model('Category', CategorySchema);

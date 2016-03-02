@@ -10,3 +10,4 @@ Tech used
 - ExpressJS (Web Framework)
 - AngularJS (Front-end Framework)
 - NodeJS (Application Server)
+- Mocha (Testing)
