@@ -19,8 +19,8 @@ describe('Category Model', function() {
 	  		description: 'Beer, Wine, Gin'
 	  	});
 
-	  	category.save(function(error, saved) {
-        should.not.exist(error);
+	  	category.save(function(err, saved) {
+        should.not.exist(err);
         done();
 	  	});
 	  });
@@ -36,7 +36,17 @@ describe('Category Model', function() {
 	  	});
 	  });
 
-	  it('throws a validation error when name longer than 15 chars');
+	  it('throws a validation error when name longer than 15 chars', function(done) {
+	  	var category = new Category({
+	  	  name: 'Delicious Homemade Dishes'
+	    });
+
+	    category.save(function(err, saved) {
+	    	should.exist(err);
+	    	err.errors.name.message.should.equal('Name must be 15 characters in length or less');
+	    	done();
+	    });
+	  });
 
 	  it('throws a validation error for duplicate category name');
   });
