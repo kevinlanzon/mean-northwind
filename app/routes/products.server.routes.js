@@ -7,4 +7,7 @@ module.exports = function(app) {
   app.route('/products')
     .get(products.list)
     .post(products.create);
+
+  app.route('/products/:productId')
+    .get(products.read);
 };

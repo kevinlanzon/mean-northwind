@@ -29,7 +29,20 @@ exports.create = function(req, res) {
  * Show the current Product
  */
 exports.read = function(req, res) {
-
+  Product.findById(req.params.productId).exec(function(err, product) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      if (!product) {
+        return res.status(404).send({
+          message: 'Product not found'
+        });
+      }
+      res.json(product);
+    }
+  });
 };
 
 /**
