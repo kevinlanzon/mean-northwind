@@ -19,3 +19,4 @@ module.exports = function(app) {
   // and added to the request object (request.product).
   app.param('productId', products.productByID);
 };
+
